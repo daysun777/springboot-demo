@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+   <div class="users">
+       <table width="800">
+           <tr>
+               <td>用户名：<input type="text" v-model="name"></td>
+               <td>年龄：<input type="text" v-model="age"></td>
+               <td class="op">
+                   <a v-if="!isEdit" @click="addUser()">添加</a>
+                   <a v-else @click="updateUser()">更新</a>
+               </td>
+           </tr>
+       </table>
+       <table width="800" v-if="users.length">
+           <tr>
+               <th>ID</th>
+               <th>用户名</th>
+               <th>年龄</th>
+               <th width="100">操作</th>
+           </tr>
+           <tr v-for="(it, index) in users">
+               <td>{{it.id}}</td>
+               <td>{{it.name}}</td>
+               <td>{{it.age}}</td>
+               <td class="op">
+                   <a @click="editUser(it)">编辑</a>
+                   <a @click="delById(it.id)">删除</a>
+               </td>
+           </tr>
+       </table>
+   </div>
+</div>
+<script>
+    var baseurl = 'http://localhost:8083'
+    function ajax({type = 'GET', data = {}, url}) {
+        return $.ajax({
+            type: type || 'GET',
+            url: baseurl + url,
+            data: data || {},
+            dataType: "json"
+        })
+    }
+    new Vue({
+        el:'#app',
+        data: {
+            users: [],
+            name: '',
+            age: '',
+            id: '',
+            isEdit: false
+        },
+        methods: {
+            getUsers () {
+                ajax({url: '/findall'}).then((res) => {
+                    this.users = res.data
+                })
+            },
+            delById (id) {
+                ajax({url: '/del/'+id}).then(() => {
+                   window.alert('删除成功！')
+                    this.getUsers()
+                })
+            },
+            addUser(){
+                ajax({
+                    url: '/addUser',
+                    data: {
+                        name: this.name,
+                        age:this.age
+                    }
+                }).then(() => {
+                    //window.alert('添加成功！')
+                    this.name = ''
+                    this.age =''
+                    this.getUsers()
+                })
+            },
+            editUser(it){
+                this.isEdit = true
+                this.name = it.name
+                this.age =it.age
+                this.id = it.id
+            },
+            updateUser() {
+                ajax({
+                    url: '/updateUserCtrol',
+                    data: {
+                        name: this.name,
+                        age:this.age,
+                        id: this.id
+                    }
+                }).then(() => {
+                    //window.alert('添加成功！')
+                    this.name = ''
+                    this.age =''
+                    this.id = ''
+                    this.isEdit = false
+                    this.getUsers()
+                })
+            }
+        },
+        mounted() {
+            this.getUsers()
+        }
+    })
+</script>
+</body>
+</html>

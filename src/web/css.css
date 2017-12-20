@@ -1,0 +1,47 @@
+html, body, div, span,h1, h2, h3, h4, h5, h6, p,img,div,ul,li,dl,ol,dt,dd{
+    margin: 0;
+    padding: 0;
+}
+html {
+    line-height: 1;
+}
+img{border:none}
+body,div,p,span,talbe {
+    font-family: '\5FAE\8F6F\96C5\9ED1','\5B8B\4F53'
+}
+ol, ul {
+    list-style: outside none none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+caption, th, td {
+    font-weight: normal;
+    text-align: left;
+    vertical-align: middle;
+}
+a img {
+    border: medium none;
+}
+
+.users {
+    width: 800px;
+    margin: 10px auto;
+}
+
+.users table {
+    margin-bottom: 20px;
+}
+.users table th {
+    border: 1px solid #ddd;
+    padding: 10px 3px;
+    background: #f2f2f2;
+}
+.users table td {
+    border: 1px solid #ddd;
+    padding: 10px 3px;
+}
+.users table td input {padding: 6px 2px;}
+.op a {color: blue;cursor: pointer;margin-right: 10px}
+.op a:hover {color: red;}
