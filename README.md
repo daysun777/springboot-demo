@@ -1,12 +1,11 @@
-### 结构最好是这样的，不然有坑
+### 结构最好是这样的
 - controller
 - mapper
 - model
 - StartApplication
 
 ### mapper提示Could not autowire. No beans of … type found？
-编译时也没有问题，运行时也能通过。就是有一个红色提示。  
-百度了好久在Dao interface上加上了@Repository注解，也算是解决了。  
+编译时也没有问题，运行时也能通过。就是有一个红色提示。  Dao interface上加上了@Repository注解，也算是解决了。  
 sql语句使用注解方式，没有XXmapper.xml文件
 
 另一种方式 @Autowired变为 @Resource 也不用在DAO上加@Repository
