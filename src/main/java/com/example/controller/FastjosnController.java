@@ -100,21 +100,21 @@ public class FastjosnController {
         return list;
     }
     
-    @GetMapping("/json9")
-    public String jsonCustomkey () {
-        User user1 = new User();
-        user1.setId(33);
-        user1.setAge(33);
-        user1.setName("guest111");
-
-        List<User> userInfo=new ArrayList<>();
-        List<User> user=new ArrayList<>();
-        JSONObject a=new JSONObject();
-
-        user.add(user1);
-        a.put("user",user);
-        a.put("userInfo",userInfo);
-        a.put("name", user1.getName());
-        return a.toString();
-    }
+//    @GetMapping("/json9")
+//    public String jsonCustomkey () {
+//        User user1 = new User();
+//        user1.setId(33);
+//        user1.setAge(33);
+//        user1.setName("guest111");
+//
+//        List<User> userInfo=new ArrayList<>();
+//        List<User> user=new ArrayList<>();
+//        JSONObject a=new JSONObject();
+//
+//        user.add(user1);
+//        a.put("user",user);
+//        a.put("userInfo",userInfo);
+//        a.put("name", user1.getName());
+//        return a.toString();
+//    }
 }
