@@ -50,7 +50,7 @@ public interface UserMapper {
     @Update("update user set name=#{name} where id=#{id}")
     int update(@Param("name") String name, @Param("id") int id);
 
-    @Update("update user set name=#{name} age=#{age} where id=#{id}")
+    @Update("update user set name=#{name} ,age=#{age} where id=#{id}")
     int updateUser(@Param("name") String name, @Param("age") int age, @Param("id") int id);
 
     /**
